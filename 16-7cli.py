@@ -9,10 +9,11 @@ BUFSIZ = 1024
 
 udpCliSock = socket(AF_INET, SOCK_DGRAM)
 data = ''
+udpCliSock.sendto(data,ADDR)
 while True:
-    udpCliSock.sendto(data,ADDR)
     data,addr = udpCliSock.recvfrom(BUFSIZ)
-    if not data:
+    if data:
         print '[%s], %s'%(addr, data)
     data = raw_input('>')
+    udpCliSock.sendto(data,ADDR)
 udpCliSock.close()

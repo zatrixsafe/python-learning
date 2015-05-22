@@ -16,6 +16,7 @@ addr1 = addr2 = ()
 while True:
     data, addr = udpSerSock.recvfrom(BUFSIZ)
     print '[%s] %s'%(data, addr)
+
     if addr1 == addr and addr2:
         udpSerSock.sendto('[%s] %s'%(ctime(), data), addr2)
     elif addr2 == addr and addr1:
@@ -25,7 +26,6 @@ while True:
         udpSerSock.sendto('', addr)
     elif not addr2:
         addr2 = addr
-        udpSerSock.sendto('', addr)
     else:
         continue
 
